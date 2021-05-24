@@ -1,30 +1,30 @@
 const mongoose = require('mongoose')
 
-const orderSchema = new mongoose.Schema({
+const lunchSchema = new mongoose.Schema({
   meal: {
     type: String,
+    default: 'Lunch',
     required: true
   },
-  main: {
+  1: {
     type: String,
+    default: 'Salad',
     required: true
   },
-  side: {
+  2: {
     type: String,
+    default: 'Chips',
     required: true
   },
-  drink: {
+  3: {
     type: String,
-    required: true
-  },
-  dessert: {
-    type: String,
+    default: 'Soda',
     required: false
   }
 }, {
   timestamps: true
 })
 
-const Order = mongoose.model('Order', orderSchema)
+const Lunch = mongoose.model('Lunch', lunchSchema)
 
-module.exports = Order
+module.exports = Lunch
