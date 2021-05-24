@@ -11,20 +11,34 @@ const handle404 = require('./../../lib/custom_errors')
 
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { example: { title: '', text: 'foo' } } -> { example: { text: 'foo' } }
-const removeBlanks = require('../../lib/remove_blank_fields')
+// const removeBlanks = require('../../lib/remove_blank_fields')
 
 // CREATE A Breakfast
 // POST /items
 
-router.post('/breakfast', removeBlanks, (req, res, next) => {
+router.post('/breakfast', (req, res, next) => {
   // extract the meal from the incoming request's data (req.body)
   const breakfastData = req.body.order
+  // console.log('this is breakfastData', breakfastData)
+  let stringData = breakfastData.toString()
+
+  console.log('this is stringData', stringData)
+
+  if (!breakfastData.includes(3)) {
+    stringData += 'Water'
+  }
+
+  stringData = stringData.replace(/1/g, 'Eggs')
+  stringData = stringData.replace(/2/g, 'Toast')
+  stringData = stringData.replace(/3/g, 'Coffee')
+
+  console.log('this stringData now', stringData)
 
   // create a breakfast using the data
-  Breakfast.create(breakfastData)
+  Breakfast.create(stringData)
     .then(breakfast => {
       // res.status(201).json({ order: breakfast })
-      res.status(200).send(JSON.stringify(`${breakfast.main}, ${breakfast.side}, ${breakfast.drink}`))
+      res.status(200).send(breakfast)
       // res.status(201).json({ menu: breakfast.menu, main: breakfast.main, side: breakfast.side, drink: breakfast.drink ? breakfast.drink : 'water' })
     })
     .catch(next)

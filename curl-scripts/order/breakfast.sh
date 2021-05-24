@@ -2,8 +2,10 @@
 
 curl 'http://localhost:4741/breakfast' \
   --include \
-  --request GET \
+  --request POST \
   --header "Content-Type: application/json" \
-  # --header "Content-Type: text/html" \
+  --data '{
+    "order": "'"${ORD}"'"
+  }'
 
 echo
