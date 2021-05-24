@@ -8,4 +8,3 @@ This Repository is for the take home coding challenge 'Menu Ordering System' fro
 - Express
 - Mongoose
 - MongoDB
-# Evive-Menu-Ordering-System
