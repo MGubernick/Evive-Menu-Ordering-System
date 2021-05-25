@@ -5,7 +5,8 @@ const cors = require('cors')
 
 // require route files
 const breakfastRoutes = require('./app/routes/breakfast_routes')
-const userRoutes = require('./app/routes/user_routes')
+const lunchRoutes = require('./app/routes/lunch_routes')
+const dinnerRoutes = require('./app/routes/dinner_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -57,7 +58,8 @@ app.use(requestLogger)
 
 // register route files
 app.use(breakfastRoutes)
-app.use(userRoutes)
+app.use(lunchRoutes)
+app.use(dinnerRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be

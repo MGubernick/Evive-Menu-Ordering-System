@@ -1,25 +1,13 @@
 const mongoose = require('mongoose')
 
 const lunchSchema = new mongoose.Schema({
-  meal: {
+  menu: {
     type: String,
-    default: 'Lunch',
-    required: true
+    default: 'Lunch'
   },
-  1: {
+  order: {
     type: String,
-    default: 'Salad',
     required: true
-  },
-  2: {
-    type: String,
-    default: 'Chips',
-    required: true
-  },
-  3: {
-    type: String,
-    default: 'Soda',
-    required: false
   }
 }, {
   timestamps: true
