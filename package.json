@@ -11,7 +11,7 @@
     "s": "nodemon server.js",
     "debug-server": "DEBUG=express:* nodemon server.js"
   },
-  "author": "",
+  "author": "mgubernick",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.7",
