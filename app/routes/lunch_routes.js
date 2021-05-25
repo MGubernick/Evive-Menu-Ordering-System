@@ -15,30 +15,40 @@ router.post('/lunch', (req, res, next) => {
   // take the value from lunchData and turn it to a string
   let stringData = lunchData.lunch.toString()
 
+  const shrink = stringData.replace(/,/g, '')
+  const split = shrink.split('')
+  let newStringData = split.sort().join(',')
+  // Always append 'Water' for Dinner after the Drink
+  console.log('newStringData', newStringData)
+
   // check to see if the order included 'Soda' (3) -> if not, append 'Water'
-  if (!stringData.includes(3)) {
-    stringData += ',Water'
+  if (!newStringData.includes(3)) {
+    newStringData += ',Water'
   }
   // check order to make sure it is valid within parameters that the system allows
   // order must include a main and a side but not multiple mains (sandwich)
 
-  if (!stringData.includes(1)) {
-    res.status(400).send('Unable to process: Sandwich is missing')
-  } else if (stringData.includes(1, 1)) {
+  if (!newStringData.includes(1) && !newStringData.includes(2)) {
+    res.status(400).send('Unable to process: main is missing, side is missing')
+  }
+
+  if (!newStringData.includes(1)) {
+    res.status(400).send('Unable to process: main is missing')
+  } else if (newStringData.includes(1, 1)) {
     res.status(400).send('Unable to process: cannot order more than one Sandwich')
   }
 
-  if (!stringData.includes(2)) {
-    res.status(400).send('Unable to process: Chips are missing')
+  if (!newStringData.includes(2)) {
+    res.status(400).send('Unable to process: side is missing')
   }
 
   // take the numbers indicated in the order and replace them with the item that they represent
-  stringData = stringData.replace(/1/g, 'Sandwich')
-  stringData = stringData.replace(/2/g, 'Chips')
-  stringData = stringData.replace(/3/g, 'Soda')
+  newStringData = newStringData.replace(/1/g, 'Sandwich')
+  newStringData = newStringData.replace(/2/g, 'Chips')
+  newStringData = newStringData.replace(/3/g, 'Soda')
 
   // turn this back into an object so that the .create() will work
-  const buildData = `{ "order": "${stringData}" }`
+  const buildData = `{ "order": "${newStringData}" }`
   const toObj = JSON.parse(buildData)
 
   // create a lunch using this data

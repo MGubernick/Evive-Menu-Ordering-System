@@ -14,36 +14,44 @@ router.post('/dinner', (req, res, next) => {
   const dinnerData = req.body
   // take the value from dinnerData and turn it to a string
   let stringData = dinnerData.dinner.toString()
-  // Always append 'Water' for Dinner after the Drink
-  stringData = [stringData.slice(0, -1), 'Water,', stringData.slice(-1)].join('')
 
+  const shrink = stringData.replace(/,/g, '')
+  const split = shrink.split('')
+  let newStringData = split.sort().join('')
+  // Always append 'Water' for Dinner after the Drink
+  newStringData = [newStringData.slice(0, -1), 'Water,', newStringData.slice(-1)].join(',')
+  console.log('newStringData', newStringData)
   // check order to make sure it is valid within parameters that the system allows
   // order must include a main and a side but not multiples of each
 
-  if (!stringData.includes(1)) {
+  if (!newStringData.includes(1) && !newStringData.includes(2)) {
+    res.status(400).send('Unable to process: main is missing, side is missing')
+  }
+
+  if (!newStringData.includes(1)) {
     res.status(400).send('Unable to process: your main dish is missing')
-  } else if (stringData.includes(1, 1)) {
+  } else if (newStringData.includes(1, 1)) {
     res.status(400).send('Unable to process: cannot order more than one main')
   }
 
-  if (!stringData.includes(2)) {
+  if (!newStringData.includes(2)) {
     res.status(400).send('Unable to process: side is missing')
-  } else if (stringData.includes(2, 3)) {
+  } else if (newStringData.includes(2, 3)) {
     res.status(400).send('Unable to process: sorry, cannot order more than one side for dinner')
   }
 
-  if (!stringData.includes(4)) {
+  if (!newStringData.includes(4)) {
     res.status(400).send('Unable to process: dessert is missing!')
   }
 
   // take the numbers indicated in the order and replace them with the item that they represent
-  stringData = stringData.replace(/1/g, 'Steak')
-  stringData = stringData.replace(/2/g, 'Potatoes')
-  stringData = stringData.replace(/3/g, 'Wine')
-  stringData = stringData.replace(/4/g, 'Cake')
+  newStringData = newStringData.replace(/1/g, 'Steak')
+  newStringData = newStringData.replace(/2/g, 'Potatoes')
+  newStringData = newStringData.replace(/3/g, 'Wine')
+  newStringData = newStringData.replace(/4/g, 'Cake')
 
   // turn this back into an object so that the .create() will work
-  const buildData = `{ "order": "${stringData}" }`
+  const buildData = `{ "order": "${newStringData}" }`
   const toObj = JSON.parse(buildData)
 
   // create a breakfast using this data

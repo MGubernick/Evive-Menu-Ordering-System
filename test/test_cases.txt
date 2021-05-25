@@ -1,0 +1,54 @@
+In: Breakfast 1,2,3
+JSON input (Postman): {"breakfast": "1,2,3"} 
+curl-script: ORD='1,2,3' sh curl-scripts/order/breakfast.sh
+Output: Eggs,Toast,Coffee
+
+In: Breakfast 2,3,1
+JSON input (Postman): {"breakfast": "2,3,1"} 
+curl-script: ORD='2,3,1' sh curl-scripts/order/breakfast.sh
+Output: Eggs,Toast,Coffee
+
+In: Breakfast 1,2,3,3,3
+JSON input (Postman): {"breakfast": "1,2,3,3,3"}
+curl-script: ORD='1,2,3,3,3' sh curl-scripts/order/breakfast.sh
+Output: Egs,Toast,Coffee,Coffee,Coffee
+
+In: Breakfast 1 
+JSON input (Postman): {"breakfast": "1"}
+curl-script: ORD='1' sh curl-scripts/order/breakfast.sh
+Output: Unable to process: Side is missing
+
+In: Lunch 1,2,3
+JSON input (Postman): {"lunch": "1,2,3"}
+curl-script: ORD='1,2,3' sh curl-scripts/order/lunch.sh
+Output: Sandwich,Chips,Soda
+
+In: Lunch 1,2
+JSON input (Postman): {"lunch": "1,2"}
+curl-script: ORD='1,2' sh curl-scripts/order/lunch.sh
+Output: Sandwich,Chips,Water
+
+In: Lunch 1,1,2,3
+JSON input (Postman): {"lunch": "1,1,2,3"}
+curl-script: ORD='1,1,2,3' sh curl-scripts/order/lunch.sh
+Output: Unable to process: Sandwich cannot be ordered more than once
+
+In: Lunch 1,2,2
+JSON input (Postman): {"lunch": "1,2,2"}
+curl-script: ORD='1,2,2' sh curl-scripts/order/lunch.sh
+Output: Sandwich,Chips,Chips,Water
+
+In: Lunch
+JSON input (Postman): {"lunch": ""}
+curl-script: ORD='' sh curl-scripts/order/lunch.sh
+Output: Unable to process: Main is missing, side is missing
+
+In: Dinner
+JSON input (Postman): {"dinner": "1,2,3,4"}
+curl-script: ORD='1,2,3,4' sh curl-scripts/order/dinner.sh
+Output: Steak,Potatoes,Wine,Water,Cake
+
+In: Dinner
+JSON input (Postman): {"dinner": "1,2,3"}
+curl-script: ORD='1,2,3' sh curl-scripts/order/dinner.sh
+Output: Unable to process: desert is missing
