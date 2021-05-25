@@ -23,13 +23,15 @@ To to send requests to the API and test while developing, I utilized Postman and
 
 5. Enjoy!
 
+## Endpoints
+
 ### Breakfast
 
 | Routes | Method | Endpoint |
 | ----------- | ----------- | ----------- |
 | Order | POST | /breakfast
 
-### curl-script breakfast
+#### curl-script breakfast
 
 Run this code in terminal while server is running for curl-script testing:
 
@@ -53,7 +55,7 @@ Ex 2: (multiple drinks)
 | ----------- | ----------- | ----------- |
 | Order | POST | /lunch
 
-### curl-script lunch
+#### curl-script lunch
 
 Run this code in terminal while server is running for curl-script testing:
 
@@ -81,7 +83,7 @@ Ex 3: (multiple sides)
 | ----------- | ----------- | ----------- |
 | Order | POST | /dinner
 
-### curl-script dinner
+#### curl-script dinner
 
 Run this code in terminal while server is running for curl-script testing:
 
