@@ -11,21 +11,31 @@ To to send requests to the API and test while developing, I utilized Postman and
 - Mongoose
 - MongoDB
 
-## Set up and Installation instructions
+## Set up instructions
 
 1. To ensure dependencies are installed run **npm install** in terminal before use
 
-2. To use this API, ensure you are using the correct url in the Requests: <http://localhost:4741/>
+2. Run the server using **npm run server**
 
-3. Be sure to follow endpoint instructions below
+3. To use this API (if testing from Postman), ensure you are using the correct url in the Requests: <http://localhost:4741/>
 
-4. Enjoy!
+4. Be sure to follow endpoint instructions below
+
+5. Enjoy!
 
 ### Breakfast
 
 | Routes | Method | Endpoint |
 | ----------- | ----------- | ----------- |
 | Order | POST | /breakfast
+
+### curl-script breakfast
+
+Run this code in terminal while server is running for curl-script testing:
+
+```sh
+ ORD='*enter order numbers here separated by commas*' sh curl-scripts/order/breakfast.sh
+```
 
 #### Request Format: Breakfast (for body using Postman)
 
@@ -42,6 +52,14 @@ Ex 2: (multiple drinks)
 | Routes | Method | Endpoint |
 | ----------- | ----------- | ----------- |
 | Order | POST | /lunch
+
+### curl-script lunch
+
+Run this code in terminal while server is running for curl-script testing:
+
+```sh
+ ORD='*enter order numbers here separated by commas*' sh curl-scripts/order/lunch.sh
+```
 
 #### Request Format: Lunch (for body using Postman)
 
@@ -62,6 +80,14 @@ Ex 3: (multiple sides)
 | Routes | Method | Endpoint |
 | ----------- | ----------- | ----------- |
 | Order | POST | /dinner
+
+### curl-script dinner
+
+Run this code in terminal while server is running for curl-script testing:
+
+```sh
+ ORD='*enter order numbers here separated by commas*' sh curl-scripts/order/dinner.sh
+```
 
 #### Request Format: Dinner (for body using Postman)
 
